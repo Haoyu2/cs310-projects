@@ -1,14 +1,14 @@
 # cs310-projects
 
-[comment]: <> ([Discription]&#40;https://www.overleaf.com/read/jhpbfxxxnbcw&#41;)
+[Discription](https://www.overleaf.com/read/jhpbfxxxnbcw)
 
-# UMass Boston CS 310
+# UMass Boston CS 240
 
-# Project 2
+# Project 1
 
 ## Submission of Homework 1
 
-- Way of submission: Submit the four files {Meetings.java ThreeEqualParts.java ChangesComparator.java CoinChanging.java} to the
+- Way of submission: Submit the three files {Graph.java MinOpera.java Utils.java} to the
   Gradescope
 
 ## 1 Utils
