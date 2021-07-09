@@ -1,118 +1,164 @@
-# cs310-projects
-
-[comment]: <> ([Discription]&#40;https://www.overleaf.com/read/jhpbfxxxnbcw&#41;)
-
 # UMass Boston CS 310
+[Discription](https://www.overleaf.com/read/bzrtjywkdnsk)
 
 # Project 2
 
-## Submission of Homework 1
+## Submission of Project 2
 
-- Way of submission: Submit the four files {Meetings.java ThreeEqualParts.java ChangesComparator.java CoinChanging.java} to the
-  Gradescope
+- Way of submission: Submit the three files {Meetings.java ThreeEqualParts.java ChangesCom-
+  parator.java CoinChanging.java} to the Gradescope
+- If your code compiles, you get 10 points.
 
-## 1 Utils
+## 1 Meetings (25 Points)
 
-### 1.1 Primitive Array and Object Array Conversion (20 Points)
+Given an array of meeting time intervals where intervals[i] = [ _starti, endi_ ], determine if a person
+could attend all meetings.
 
-Implement all these conversion in the Utils.java
-
-### 1.2 Convert a list of integer array to a 2 dimensional array (10 Points)
-
-Implement this conversion in the Utils.java
-
-## 2 MinOpera (15 Points)
-
-You are given an integer array nums (0-indexed).
-In one operation, you can choose an element of the array and increment it by 1.
-
-For example, if nums = [1,1,3], you can choose to increment nums[1] to make nums
-= [1,2,3].
-Return the minimum number of operations needed to make nums strictly increasing.
+public static boolean all(int[][] meetings){
+/*
+* code
+* */
+  return true;
+  }
 
 Example 1:
-
-Input: nums = [1,1,1]
-Output: 3
-Explanation: You can do the following operations:
-1) Increment nums[2], so nums becomes [1,1,2].
-2) Increment nums[1], so nums becomes [1,2,2].
-3) Increment nums[2], so nums becomes [1,2,3].
-   Example 2:
-
-Input: nums = [1,5,2,4,1]
-
-
-Output: 14
-Example 3:
-
-Input: nums = [8]
-Output: 0
-
-Hint:
-
-This question can be solved by a Greedy Algorithm that for an element that does not
-strictly increasing, just increment it by the minimum amount that makes it strictly
-increasing. Add all these amount together to get the total operations.
-
-## 3 Graph
-
-### 3.1 edges2adj (10 Points)
-
-You are given the number of nodes and all the edges for a graph. You should return
-an array representation of its adjacent list for all its nodes (0,1,2,...,n-1).
-
-Example 1:
-Input: n = 5, edges = [[0,1],[1,2],[3,4]]
-Output: [[1], [0, 2], [1], [4], [3]]
+Input: intervals = [[0,30],[5,10],[15,20]]
+Output: false
 
 Example 2:
-Input: n = 5, edges = [[0,1],[1,2],[2,3],[3,4], [3, 0]]
-Output: [[1, 3], [0, 2], [1, 3], [2, 4, 0], [3]]
+Input: intervals = [[7,10],[2,4]]
+Output: true
 
-### 3.2 numComponent (15 Points)
+## 2 CoinChanging
 
-You are given a graph by its ajacent list representation.
-Return the number of connected components in the graph.
+### 2.1 CoinChange
 
+- This is a predefined class which you should not modify.
+- It represents for a given coins collection and a change, the corresponding changes and total
+  amount of coins.
+
+
+- Example,
+
+```
+Change:
+Amount:
+Coins:
+[1, 2, 3, 6, 7, 8, 10]
+Changes:
+[[0, 0, 0, 1, 0, 1, 0]]
+Actual:
+```
+```
+Interprets as: 14 = 6 * 1 + 8 * 1
+```
+public class CoinChange {
+public int change;
+public int amount;
+public int[] coins;
+public int[] changes;
+
+```
+public CoinChange(int change, int amount, int[] coins) ;
+public CoinChange(int change, int amount, int[] coins, int[] changes);
+```
+@Override
+public String toString();
+}
+
+### 2.2 ChangesComparator (10 Points)
+
+Given two changes for the same coins collection and the same change, we compare the changes by
+the amount of larger coin denominations.
+
+```
+@Override
+public int compare(int[] changes1, int[] changes2) {
+/*
+* code
+* */
+return 0;
+}
+```
 Example 1:
-Input: [[1], [0, 2], [1], [4], [3]]
-Output: 2
 
-Example 2:
-Input: [[1], [0, 2], [1, 3], [2, 4], [3]]
+
+Input: changes1 = [1,0, 1], changes = [0,2,0]
 Output: 1
+Explain:
+change: 4
+coins: [1,2,3]
 
+changes1: 1 * 1 + 3 * 1 = 4
+changes2: 2 * 2 = 4
 
-### 3.3 containsCycle (15 Points)
+Since changes1 has one coin of 3 which is large than any coin
+changes2 has, so changes1 is considered bigger thus return 1
 
-You are given a graph by its ajacent list representation.
-Return if there is cycle in the graph.
+Example 2:
+change: 6
+coin: [1, 2, 6]
+
+Input: changes1 = [0, 3, 0], changes = [0,0,1]
+Output: -
+
+### 2.3 CoinChanging (30 Points)
+
+Given a coins collecion and a change, return the CoinChange which has the smallest amount of
+coins. If the smallest amount of coins for the change has many different changes representation,
+choose the larger one defined by the previous ChangesComparator. If these is no possible changes,
+return a CoinChange variable with amount = 1 and changes equal all zero.
 
 Example 1:
-Input: [[1], [0, 2], [1], [4], [3]]
+
+change: 4
+coins: [1,2,3]
+
+changes1: 1 * 1 + 3 * 1 = 4
+changes2: 2 * 2 = 4
+
+Input: 4, [1,2,3]
+Output:
+CoinChange:
+change: 4
+amount: 2
+coins: [1,2,3]
+changes: [1, 0 , 1 ]
+
+Example 2:
+
+
+input:
+change: 1
+coin: [2, 3, 4]
+
+Output:
+CoinChange:
+change: 1
+amount: -
+coins: [1,2,3]
+changes: [0, 0 , 0 ]
+
+## 3 ThreeEqualParts (25 Points)
+
+Given an array of integers arr, return true if we can partition the array into three non-empty parts
+with equal sums.
+Formally, we can partition the array if we can find indexes i + 1 < j with (arr[0] + arr[1] + ...
++ arr[i] == arr[i + 1] + arr[i + 2] + ... + arr[j - 1] == arr[j] + arr[j + 1] + ... + arr[arr.length -
+  1])
+
+Example 1:
+Input: arr = [0,2,1,-6,6,-7,9,1,2,0,1]
+Output: true
+Explanation: 0 + 2 + 1 = -6 + 6 - 7 + 9 + 1 = 2 + 0 + 1
+
+Example 2:
+Input: arr = [0,2,1,-6,6,7,9,-1,2,0,1]
 Output: false
-
-Example 2:
-Input: [[1, 3], [0, 2], [1, 3], [2, 4, 0], [3]]
-Output: true
-
-### 3.4 isBipartite (15 Points)
-
-You are given a graph by its ajacent list representation.
-Return if this graph is a bipartite.
-
-Example 1:
-Input: [[1], [0, 2], [1], [4], [3]]
-Output: true
-
-Example 2:
-Input: [[1, 3], [0, 2], [1, 3], [2, 4, 0], [3]]
-Output: true
-
 
 Example 3:
-Input: [[3,4,6],[3,6],[3,6],[0,1,2,5],[0,7,8],[3],[0,1,2,7],[4,6],[4],[]]
-Output: false
+Input: arr = [3,3,6,5,-2,2,5,1,-9,4]
+Output: true
+Explanation: 3 + 3 = 6 = 5 - 2 + 2 + 5 + 1 - 9 + 4
 
 
