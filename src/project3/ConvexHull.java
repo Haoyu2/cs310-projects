@@ -7,8 +7,6 @@ import java.util.*;
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
-
-import static java.lang.Math.atan2;
 import static project3.Points.randGen;
 
 public class ConvexHull {
